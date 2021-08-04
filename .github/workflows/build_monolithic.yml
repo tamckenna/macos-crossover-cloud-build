@@ -276,6 +276,12 @@ jobs:
           export PNG_CFLAGS="-I$(brew --prefix libpng)/include"
           export PNG_LIBS="-L$(brew --prefix libpng)/lib"
 
+          if [[ ${{ env.CROSS_OVER_VERSION }} == 19.* || ${{ env.CROSS_OVER_VERSION }} == 20.* ]]; then
+              export DISABLE_VULKAN="--without-vkd3d --without-vulkan --disable-vulkan_1 --disable-winevulkan"
+          else
+              export DISABLE_VULKAN=""
+          fi
+
           mkdir -p ${{ env.BUILDROOT }}/wine32on64
           pushd ${{ env.BUILDROOT }}/wine32on64
           ${{ env.WINE_CONFIGURE }} \
@@ -298,10 +304,7 @@ jobs:
                     --without-sane \
                     --with-png \
                     --with-sdl \
-                    --without-vkd3d \
-                    --without-vulkan \
-                    --disable-vulkan_1 \
-                    --disable-winevulkan \
+                    ${DISABLE_VULKAN} \
                     --without-x
           popd
 
