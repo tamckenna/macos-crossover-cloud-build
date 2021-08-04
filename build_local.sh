@@ -7,7 +7,7 @@ echo Wine-Crossover-MacOS
 export GITHUB_WORKSPACE=$(pwd)
 
 if [ -z "$CROSS_OVER_VERSION" ]; then
-    export CROSS_OVER_VERSION=20.0.4
+    export CROSS_OVER_VERSION=21.0.0
 fi
 
 # avoid weird linker errors with Xcode 10 and later
