@@ -219,7 +219,7 @@ jobs:
         run: |
           set -x
 
-          export SDL2_CFLAGS="-I$(brew --prefix sdl2)/"$([[ ${{ env.CROSS_OVER_VERSION }} == 21.* ]] && echo "include/SDL2" || echo "include")
+          export SDL2_CFLAGS="-I$(brew --prefix sdl2)/"$([[ 21.0.0 == 21.* ]] && echo "include/SDL2" || echo "include")
           export GPHOTO2_CFLAGS="-I$(brew --prefix libgphoto2)/include -I$(brew --prefix libgphoto2)/include/gphoto2"
           export GPHOTO2_PORT_CFLAGS="-I$(brew --prefix libgphoto2)/include -I$(brew --prefix libgphoto2)/include/gphoto2"
 
